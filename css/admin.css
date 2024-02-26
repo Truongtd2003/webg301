@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Grandstander&display=swap");
+body {
+  font-family: "Grandstander", cursive;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  height: 100vh;
+}
+.side-nav,
+.nav-menu {
+  height: 100%;
+}
+.side-nav .nav-menu {
+  list-style: none;
+  padding: 40px 0;
+  width: 200px;
+  background-color: #3498db;
+}
+.side-nav .nav-item {
+  position: relative;
+  padding: 10px 20px;
+}
+.nav-item.active {
+  background-color: #fff;
+  box-shadow: 0px -3px rgba(0, 0, 0, 0.2), 0px 3px rgba(0, 0, 0, 0.2);
+}
+.nav-item.active a {
+  color: #2980b9;
+}
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+}
+.menu-text {
+  padding: 0 20px;
+}
+.side-nav .nav-item.active::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  bottom: 100%;
+  right: 0;
+  height: 150%;
+  width: 20px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 20px 0 0 #fff;
+}
+.side-nav .nav-item.active::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  top: 100%;
+  right: 0;
+  height: 150%;
+  width: 20px;
+  border-top-right-radius: 25px;
+  box-shadow: 0 -20px 0 0 #fff;
+}
+
+
+ /* CSS để tạo hình avatar hình tròn */
+ .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin-right: 10px;
+}
+
+.avatar img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.table-container {
+  margin: 10px 100px;
+  /* Adjust this value to align with your side navigation width */
+  width: calc(100% - 250px);
+  height: auto;
+  padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  /* Adjust this value to match the space left after side navigation */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  color: #8d8d8d;
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.data-table th {
+  color: #333;
+
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  /* Màu chính (primary color) */
+  color: #fff;
+  /* Màu chữ */
+  padding: 10px 20px;
+  /* Độ lớn của nút */
+  border: none;
+  /* Không có đường viền */
+  border-radius: 5px;
+  /* Độ cong của góc */
+  cursor: pointer;
+  /* Con trỏ chuột khi di chuột qua */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  /* Màu chính khi hover */
+}
