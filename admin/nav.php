@@ -10,11 +10,11 @@
                     </div>
                     <p style="color:white;margin-top:10px">Admin</p>
                 </div>
-                <li class="nav-item"><a href="#"><i class="fas fa-book"></i><span class="menu-text">Product</span></a>
+                <li class="nav-item"><a href="product.php"><i class="fas fa-book"></i><span class="menu-text">Product</span></a>
                 </li>
                 <li class="nav-item"><a href="category.php"><i class="fas fa-user"></i><span class="menu-text">Category</span></a>
                 </li>
-                <li class="nav-item active"><a href="index.php"><i class="fas fa-list"></i><span
+                <li class="nav-item "><a href="index.php"><i class="fas fa-list"></i><span
                             class="menu-text">User Admin</span></a></li>
 
             </ul>

@@ -1,3 +1,23 @@
+<?php 
+require_once('../database.php');
+
+$email = $_POST['email'];
+$password = $_POST['password'];
+$hashed_password = hash('sha256', $_POST['password']);
+
+session_start();
+$_SESSION['admin_id'] = $user['admin_id'];
+
+header("Location: admin.php");
+if (verify_login($email, $hashed_password)) {
+    $_SESSION['admin_id'] = $user['admin_id'];
+
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -70,7 +90,7 @@
                             <div class="text-center margin-bottom-30">
                                 <h1 class="title-head">Đăng nhập tài khoản</h1>
                             </div>
-                            <form method="post" action="/account/login" id="customer_login" accept-charset="UTF-8"
+                            <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>" id="customer_login" accept-charset="UTF-8"
                                 class="has-validation-callback"><input name="FormType" type="hidden"
                                     value="customer_login"><input name="utf8" type="hidden" value="true">
                                 <div class="form-signup">
@@ -79,7 +99,7 @@
                                 <div class="form-signup clearfix">
                                     <fieldset class="form-group margin-bottom-10">
                                         <label>Email<span class="required">*</span></label>
-                                        <input autocomplete="off" placeholder="Nhập Địa chỉ Email" type="email"
+                                        <input autocomplete="off" placeholder="Nhập Địa chỉ Email" type="text"
                                             class="form-control form-control-lg" value="" name="email"
                                             id="customer_email" required="" data-validation="email"
                                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"
@@ -87,7 +107,7 @@
                                     </fieldset>
                                     <fieldset class="form-group margin-bottom-0">
                                         <label>Mật khẩu<span class="required">*</span></label>
-                                        <input autocomplete="off" placeholder="Nhập Mật khẩu" type="password"
+                                        <input autocomplete="off" placeholder="Nhập Mật khẩu" type="text"
                                             class="form-control form-control-lg" value="" name="password"
                                             id="customer_password" data-validation-error-msg="Không được để trống"
                                             data-validation="required">

@@ -102,7 +102,7 @@ require_once('../database.php');
                         <th>Name</th>
                         <th>Email</th>
                         <th>Pass Word</th>                       
-                        <th>Action</th>
+                        <th>dcm</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -130,11 +130,5 @@ require_once('../database.php');
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    $(function () {
-        $("li").click(function (e) {
-            e.preventDefault();
-            $("li").removeClass("active");
-            $(this).addClass("active");
-        });
-    });
+    
 </script>
