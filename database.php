@@ -86,16 +86,37 @@ function redirect_to($location)
   exit;
 }
 
+
+function find_admin_by_email($email){
+  global $db;
+  $sql = "SELECT * FROM admins WHERE email = '$email' ";
+  $sql .= "LIMIT 1";
+  $result = mysqli_query($db, $sql);
+  confirm_query_result($result);
+  $admin = mysqli_fetch_assoc($result);
+  mysqli_free_result($result);
+  return $admin;
+  
+}
+
 function verify_login($email, $password)
 {
   global $db;
-  $sql = "SELECT * FROM admins WHERE email = '$email' AND hash_password = '$password'";
+  $sql = "SELECT * FROM admins WHERE email = '$email' ";
+  $sql .= "LIMIT 1";
   $result = mysqli_query($db, $sql);
-
+  confirm_query_result($result);
   if (mysqli_num_rows($result) === 1) {
-    return true;
-    
+    $user = mysqli_fetch_assoc($result);
+    if ($password === $user['hash_password']) {
+
+      return true;
+    } else {
+
+      return false;
+    }
   } else {
+
     return false;
   }
 }
