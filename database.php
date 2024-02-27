@@ -98,6 +98,14 @@ function find_admin_by_email($email){
   return $admin;
   
 }
+function find_all_products(){
+  global $db;
+
+  $sql = "SELECT * FROM products";
+  $result = mysqli_query($db, $sql);
+ 
+  return confirm_query_result($result);
+}
 
 function verify_login($email, $password)
 {

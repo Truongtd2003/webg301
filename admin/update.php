@@ -27,10 +27,10 @@ function checkForm(){
     if (empty($_POST['email'])){
         $errors[] = 'Email is required';
     }
-    if (empty($_POST['newpassword'])){
+    if (empty($_POST['newpassword']) && !empty($_POST['confirmpassword'])){
         $errors[] = 'New Password is required';
     }
-    if (empty($_POST['confirmpassword'])){
+    if (empty($_POST['confirmpassword']) && !empty($_POST['newpassword'])){
         $errors[] = 'Confirm password is required';
     }
     $hashed_password = hash('sha256', $_POST['hash_password']);
@@ -39,7 +39,7 @@ function checkForm(){
         $errors[] = 'Incorrect password';
         
     }
-    if($_POST['confirmpassword'] != $_POST['newpassword']){
+    if($_POST['confirmpassword'] != $_POST['newpassword'] && !empty($_POST['newpassword'])){
 
         $errors[] = 'Incorrect new password';
     }
