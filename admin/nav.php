@@ -20,6 +20,10 @@
                 </li>
                 <li class="nav-item active"><a href="index.php"><i class="fas fa-list"></i><span
                             class="menu-text">User Admin</span></a></li>
+                
+
+                 <li class="nav-item"><a href="logout.php"><i class="fas fa-book"></i><span class="menu-text">Logout</span></a>
+                </li>
 
             </ul>
         </nav>
