@@ -1,6 +1,6 @@
 <?php 
 require_once('../lib/initialize.php');
-unset($_SESSION['admim']);
+unset($_SESSION['admin']);
 redirect_to('../page/login.php');
 exit;
 

@@ -1,5 +1,8 @@
 
-<?php $admin_s = find_admin_by_id($_SESSION['admin']);
+<?php 
+$admin_id = isset($_SESSION['admin']) ? $_SESSION['admin'] : '';
+
+$admin_s = find_admin_by_id($admin_id);
 
 ?>
 <nav class="side-nav">
