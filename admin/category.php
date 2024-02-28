@@ -74,7 +74,7 @@ require_once('../database.php');
         <div class="table-container">
             <div style="display:flex;justify-content:space-between;margin-bottom:20px">
                 <h2>Category Manager</h2>
-                <a href="create_category.php" style="cursor: pointer;color:rgb(0, 119, 255)">Create New Category</a>
+                <a href="create/catgory.php" style="cursor: pointer;color:rgb(0, 119, 255)">Create New Category</a>
             </div>
             <table class="data-table">
                 <thead>
