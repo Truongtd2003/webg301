@@ -1,5 +1,5 @@
 <?php 
-require_once('../database.php');
+require_once('../../database.php');
 
 
 $errors = [];
@@ -55,12 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST'){
         $admin = [];
         $admin['admin_id'] =  $_POST['admin_id'];
         $admin['username'] =  $_POST['username'];
-        $admin['hash_password'] =  $_POST['newpassword'];
+        $admin['hash_password'] =  !empty($_POST['newpassword']) ?  $_POST['newpassword'] : $_POST['hash_password'] ;
+        
         $admin['email'] =  $_POST['email'];
         
 
         update_admin($admin);
-        header('Location: index.php');
+        header('Location: ../index.php');
 exit;
 
 
@@ -70,7 +71,7 @@ exit;
 }
 else{
     if(!isset($_GET['id'])) {
-        redirect_to('index.php');
+        redirect_to('../index.php');
     }
     $id = $_GET['id'];
     $admin = find_admin_by_id($id);
@@ -143,7 +144,7 @@ else{
     </form>
 
     <div class="container mt-4">
-        <a href="index.php" class="btn btn-info">Back to index</a> 
+        <a href="../index.php" class="btn btn-info">Back to index</a> 
     </div>
 
 

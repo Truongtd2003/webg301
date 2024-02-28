@@ -93,7 +93,7 @@ session_start();
         <div class="table-container">
             <div style="display:flex;justify-content:space-between;margin-bottom:20px">
                 <h2>Product Manager</h2>
-                <a href="create.php" style="cursor: pointer;color:rgb(0, 119, 255)">Create New Product</a>
+                <a href="create/product.php" style="cursor: pointer;color:rgb(0, 119, 255)">Create New Product</a>
             </div>
             <table class="data-table">
                 <thead>
@@ -103,6 +103,7 @@ session_start();
                     <th>Material</th>
                     <th>Image URL</th>
                     <th>Origin</th> 
+                    <th>Action</th>
                     <th>Action</th>
                     </tr>
                 </thead>
@@ -118,6 +119,7 @@ session_start();
                         <td><img style="width: 100px;" src="<?php echo '../hinhanh/' . $product['image_url']; ?>" alt="<?php echo $product['product_name']; ?>" class="product-image"></td>
                         <td><?php echo $product['origin']; ?></td> 
                         <td><a class="btn-primary" href="<?php echo 'update.php?id='.$product['product_id']; ?>">Edit</a></td>
+                        <td><a class="btn-primary" href="<?php echo 'delete/product.php?id='.$product['product_id']; ?>">delete</a></td>
                     </tr>
                     <?php endwhile; ?>
                     <?php mysqli_free_result($product_set); ?>
