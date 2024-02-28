@@ -117,7 +117,7 @@ session_start();
                 <td><?php echo $admin['username']; ?></td>
                 <td><?php echo $admin['email']; ?></td>
                 <td><?php echo $admin['hash_password']; ?></td>
-                <td><a class="btn-primary " href="<?php echo 'update.php?id='.$admin['admin_id']; ?>">Edit</a ></td>
+                <td><a class="btn-primary " href="<?php echo 'update/update-admin.php?id='.$admin['admin_id']; ?>">Edit</a ></td>
               
             </tr>
             <?php endwhile; ?>
