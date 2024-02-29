@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && isFormValidated()) : ?>
         <?php
         $category = [];
-        $category['category_name'] =  $_POST['$category_name'];
+        $category['category_name'] =  $_POST['category_name'];
         
         $file = $_FILES['image'];
         $file_name = $file['name']; // Process file name

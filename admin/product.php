@@ -33,6 +33,7 @@ session_start();
 
         .table-container {
             margin: 10px 100px;
+            overflow-y: auto;
             /* Adjust this value to align with your side navigation width */
             width: calc(100% - 250px);
             height: auto;
@@ -42,6 +43,19 @@ session_start();
             border: 1px solid #ccc;
             /* Adjust this value to match the space left after side navigation */
         }
+
+        .table-container table {
+    width: 100%; /* Đảm bảo bảng sử dụng toàn bộ chiều rộng của .table-container */
+    table-layout: fixed; /* Giữ bảng ở một chiều rộng cố định */
+}
+
+.table-container td,
+.table-container th {
+    white-space: nowrap; /* Ngăn các nội dung trong ô từ việc xuống dòng */
+    overflow: hidden; /* Ẩn phần nội dung dư thừa nếu nó tràn ra khỏi ô */
+    text-overflow: ellipsis; /* Hiển thị dấu "..." nếu nội dung trong ô quá dài */
+}
+
 
         .data-table {
             width: 100%;
@@ -101,6 +115,7 @@ session_start();
                     <th>Name</th>
                     <th>Price</th>
                     <th>Material</th>
+                    <th>description</th>
                     <th>Image URL</th>
                     <th>Origin</th> 
                     <th>Action</th>
@@ -116,9 +131,10 @@ session_start();
                         <td><?php echo $product['product_name']; ?></td>
                         <td><?php echo $product['price']; ?></td>
                         <td><?php echo $product['material']; ?></td>
+                        <td><?php echo $product['description']; ?></td>
                         <td><img style="width: 100px;" src="<?php echo '../hinhanh/' . $product['image_url']; ?>" alt="<?php echo $product['product_name']; ?>" class="product-image"></td>
                         <td><?php echo $product['origin']; ?></td> 
-                        <td><a class="btn-primary" href="<?php echo 'update.php?id='.$product['product_id']; ?>">Edit</a></td>
+                        <td><a class="btn-primary" href="<?php echo 'update/product.php?id='.$product['product_id']; ?>">Edit</a></td>
                         <td><a class="btn-primary" href="<?php echo 'delete/product.php?id='.$product['product_id']; ?>">delete</a></td>
                     </tr>
                     <?php endwhile; ?>

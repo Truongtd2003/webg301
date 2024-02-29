@@ -42,6 +42,26 @@ function insert_product($product) {
   return confirm_query_result($result);
 }
 
+function update_product($product) {
+  global $db;
+
+  $sql = "UPDATE products SET ";
+  $sql .= "category_id='" . $product['category_id'] . "', ";
+  $sql .= "product_name='" . $product['product_name'] . "', ";
+  $sql .= "description='" . $product['description'] . "', ";
+  $sql .= "price='" . $product['price'] . "', ";
+  $sql .= "material='" . $product['material'] . "', ";
+  $sql .= "image_url='" . $product['image_url'] . "', ";
+  $sql .= "origin='" . $product['origin'] . "' ";
+  $sql .= "WHERE product_id='" . $product['product_id'] . "' ";
+  $sql .= "LIMIT 1";
+  
+  $result = mysqli_query($db, $sql);
+
+  return confirm_query_result($result);
+}
+
+
 
 function confirm_query_result($result)
 {
@@ -225,8 +245,7 @@ function insert_category($category) {
 
   $result = mysqli_query($db, $sql);
 
-  // Consider using mysqli_insert_id() to get the newly created ID
-  // if your application needs it.
+ 
 
   return confirm_query_result($result);
 }
