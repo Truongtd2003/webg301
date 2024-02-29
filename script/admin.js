@@ -24,3 +24,17 @@ function setActiveMenuItem() {
 document.addEventListener('DOMContentLoaded', function() {
     setActiveMenuItem();
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Find the table container
+    var tableContainer = document.querySelector('.table-container');
+
+    // Add event listener to prevent body scrolling when scrolling in the table container
+    tableContainer.addEventListener('wheel', function(e) {
+        if (e.deltaY !== 0) {
+            e.preventDefault();
+            tableContainer.scrollTop += e.deltaY;
+        }
+    });
+});

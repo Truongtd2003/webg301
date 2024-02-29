@@ -1,5 +1,5 @@
 <?php 
-require_once('../database.php');
+require_once('../../database.php');
 
 
 $errors = [];
@@ -27,10 +27,10 @@ function checkForm(){
     if (empty($_POST['email'])){
         $errors[] = 'Email is required';
     }
-    if (empty($_POST['newpassword'])){
+    if (empty($_POST['newpassword']) && !empty($_POST['confirmpassword'])){
         $errors[] = 'New Password is required';
     }
-    if (empty($_POST['confirmpassword'])){
+    if (empty($_POST['confirmpassword']) && !empty($_POST['newpassword'])){
         $errors[] = 'Confirm password is required';
     }
     $hashed_password = hash('sha256', $_POST['hash_password']);
@@ -39,7 +39,7 @@ function checkForm(){
         $errors[] = 'Incorrect password';
         
     }
-    if($_POST['confirmpassword'] != $_POST['newpassword']){
+    if($_POST['confirmpassword'] != $_POST['newpassword'] && !empty($_POST['newpassword'])){
 
         $errors[] = 'Incorrect new password';
     }
@@ -55,12 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST'){
         $admin = [];
         $admin['admin_id'] =  $_POST['admin_id'];
         $admin['username'] =  $_POST['username'];
-        $admin['hash_password'] =  $_POST['newpassword'];
+        $admin['hash_password'] =  !empty($_POST['newpassword']) ?  $_POST['newpassword'] : $_POST['hash_password'] ;
+        
         $admin['email'] =  $_POST['email'];
         
 
         update_admin($admin);
-        header('Location: index.php');
+        header('Location: ../index.php');
 exit;
 
 
@@ -70,7 +71,7 @@ exit;
 }
 else{
     if(!isset($_GET['id'])) {
-        redirect_to('index.php');
+        redirect_to('../index.php');
     }
     $id = $_GET['id'];
     $admin = find_admin_by_id($id);
@@ -143,7 +144,7 @@ else{
     </form>
 
     <div class="container mt-4">
-        <a href="index.php" class="btn btn-info">Back to index</a> 
+        <a href="../index.php" class="btn btn-info">Back to index</a> 
     </div>
 
 

@@ -50,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         $_SESSION['admin'] = $admin['admin_id'];
       
 
-
-       header("Location: ../admin/index.php");
+        redirect_to('../admin/index.php');
+       
      
 
         
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
    
 
     
-
+    include
     <div class="container margin-bottom-20 margin-top-30">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -201,7 +201,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     </div>
 
-    <?php include('footer.php')  ?>
+    <?php //include('footer.php')  ?>
 
 
 </body>
