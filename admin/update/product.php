@@ -3,6 +3,8 @@
 require_once('../../database.php');
 $category = find_all_category();
 
+
+
 $errors = [];
 
 function isFormValidated()
@@ -48,14 +50,21 @@ if($_SERVER["REQUEST_METHOD"] == 'POST'){
         $product['product_name'] =  $_POST['product_name'];
         $product['price'] =  $_POST['price'];
         $product['material'] =  $_POST['material'];
-        $product['category'] =  $_POST['category'];
+        $product['category_id'] =  $_POST['category'];
         $product['description'] =  $_POST['description'];
         $product['origin'] =  $_POST['origin'];
         $file = $_FILES['image'];
         $file_name = $file['name'];
-        $product['image_url'] = isset($_FILES['image']['name']) ? $_FILES['image']['name'] : $_POST['old_image'];  ;
+        if (!empty($_FILES['image']['name'])) {
+            $product['image_url'] = $_FILES['image']['name'];
+        } elseif (!empty($_POST['name_image'])) {
+            $product['image_url'] = $_POST['name_image'];
+        } else {
+            $product['image_url'] = $_POST['old_image'];
+        }
         
         $result = update_product($product);
+        var_dump($product);
         if($result){
         redirect_to('../product.php');
         }
@@ -72,6 +81,7 @@ else{
    }
     $id = $_GET['id'];
     $product = find_product_by_id($id);
+    
 
 }
 
@@ -115,7 +125,15 @@ else{
     <label for="category">Category</label>
     <select name="category" id="category" class="form-control">
         <?php foreach ($category as $key => $value) { ?>
-            <option value="<?php echo $value['category_id'] ?>" <?php echo ($value['category_id'] ==  $product['category_id']) ? 'selected' : ''; ?>> <?php echo $value['category_name'] ?> </option>
+            <option value="<?php echo  $value['category_id']  ?>" <?php 
+            if (($_SERVER["REQUEST_METHOD"] == 'GET') && $value['category_id'] ==  $product['category_id']) {
+                echo 'selected';
+            }if (($_SERVER["REQUEST_METHOD"] == 'POST') && $value['category_id'] == $_POST['category']) {
+                echo 'selected';
+            } else {
+                echo '';
+            }
+                ?> > <?php echo $value['category_name'] ?> </option>
         <?php } ?>
     </select>
 </div>
@@ -132,10 +150,13 @@ else{
 
     <div class="form-group">
     <label for="name">Image Product</label>
+    <input type="hidden" name="name_image"  value = "<?php echo isFormValidated() ? "" : $_FILES['image']['name'] ?>">
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="image" name="image" >
-        <label class="custom-file-label" for="image">Choose file</label>
+   
+        <input type="file" class="custom-file-input" id="image" name="image" value = "">
+        <label class="custom-file-label" for="image" >Choose file</label>
     </div>
+
     <div class="mt-2">
         <input type="hidden" name="old_image" value="<?php echo isFormValidated() ? $product['image_url']: $_POST['old_image'];?>">
         <img class="img-fluid rounded" alt="Product Image"  src="../../hinhanh/<?php echo isFormValidated() ? $product['image_url'] : $_POST['old_image'] ?>" >
@@ -160,3 +181,8 @@ else{
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<?php 
+
+db_disconnect($db);
+?>

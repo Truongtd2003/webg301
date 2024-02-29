@@ -44,6 +44,7 @@ function insert_product($product) {
 
 function update_product($product) {
   global $db;
+  
 
   $sql = "UPDATE products SET ";
   $sql .= "category_id='" . $product['category_id'] . "', ";
