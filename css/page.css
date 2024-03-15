@@ -1,0 +1,13 @@
+.evo-main-nav {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Ẩn menu bên trái */
+    width: 250px;
+    height: 100%;
+    background: #fff;
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.show-nav {
+    left: 0; /* Hiển thị menu */
+}

@@ -1,6 +1,12 @@
 <?php 
 
 require_once('../../database.php');
+
+session_start();
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../../page/login.php');
+}
 $category = find_all_category();
 
 
@@ -102,6 +108,23 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+
+  <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()) : ?>
+        <div class="alert alert-danger" role="alert">
+            <span> Please fix the following errors </span>
+            <ul>
+                <?php
+                foreach ($errors as $key => $value) {
+                    if (!empty($value)) {
+                        echo '<li>', $value, '</li>';
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+
   <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" enctype="multipart/form-data" class="container mt-4">
 
   <input type="hidden" name="product_id" value="<?php echo isFormValidated() ? $product['product_id'] : $_POST['product_id'] ;?>">
@@ -113,7 +136,7 @@ else{
 
 <div class="form-group">
     <label for="price">Price</label>
-    <input type="text" class="form-control" id="price" name="price" value="<?php echo (isFormValidated() ? $product['price'] : $_POST['price']) ?>">
+    <input type="number" class="form-control" id="price" name="price" value="<?php echo (isFormValidated() ? $product['price'] : $_POST['price']) ?>">
 </div>
 
 <div class="form-group">

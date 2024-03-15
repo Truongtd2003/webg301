@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     <link rel="preload" as="script" href="//bizweb.dktcdn.net/100/415/393/themes/805827/assets/evo-index-js.js?1640151112834" />
     <script src="//bizweb.dktcdn.net/100/415/393/themes/805827/assets/evo-index-js.js?1640151112834" type="text/javascript"></script>
 
-
+    <?php include('../shared/header.php') ?>
     <?php if ($_SERVER["REQUEST_METHOD"] == 'POST' && !isFormValidated()): ?> 
         <div class="alert alert-danger" role="alert">
             <span> Please fix the following errors </span>
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
    
 
     
-    include
+   
     <div class="container margin-bottom-20 margin-top-30">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -148,9 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                                     <input autocomplete="off" placeholder="Nhập Mật khẩu" type="text" class="form-control form-control-lg" value="<?php echo isFormValidated() ? '' : $_POST['password'] ?>" name="password" id="customer_password">
                                 </fieldset>
                                 <div class="clearfix"></div>
-                                <p class="text-left recover">
-                                    <a href="#recover" class="btn-link-style" onclick="showRecoverPasswordForm();" title="Quên mật khẩu?">Quên mật khẩu?</a>
-                                </p>
+                              
                                 <div class="pull-xs-left text-center" style="margin-top: 15px;">
                                     <button class="btn btn-style btn-blues" type="submit" value="Đăng nhập">Đăng
                                         nhập</button>
@@ -161,39 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                             </div>
                         </form>
                         <div class="clearfix"></div>
-                        <div class="text-login text-center">
-                            <p>
-                                Bạn chưa có tài khoản. Đăng ký <a href="/account/register" title="Đăng ký">tại
-                                    đây.</a>
-                            </p>
-                        </div>
+                        
                     </div>
-                    <div id="recover-password" class="form-signup" style="display:none;">
-                        <div class="text-center">
-                            <h2 class="title-head"><span>Đặt lại mật khẩu</span></h2>
-                        </div>
-                        <div class="fix-sblock text-center">
-                            Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua email.
-                        </div>
-                        <form method="post" action="/account/recover" id="recover_customer_password" accept-charset="UTF-8" class="has-validation-callback"><input name="FormType" type="hidden" value="recover_customer_password"><input name="utf8" type="hidden" value="true">
-                            <div class="form-signup aaaaaaaa">
-
-                            </div>
-
-                            <div class="form-signup clearfix">
-                                <fieldset class="form-group">
-                                    <label>Email<span class="required">*</span></label>
-                                    <input type="email" class="form-control form-control-lg" value="" name="Email" id="recover-email" placeholder="Nhập địa chỉ Email" data-validation="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" data-validation-error-msg="Email sai định dạng" required="">
-                                </fieldset>
-                            </div>
-                            <div class="action_bottom text-center">
-                                <button class="btn btn-style btn-blues" style="margin-top: 15px;" type="submit" value="Lấy lại mật khẩu">Lấy lại mật khẩu</button>
-                            </div>
-                            <div class="text-login text-center">
-                                <p>Quay lại <a href="javascript:;" class="btn-link-style btn-register" onclick="hideRecoverPasswordForm();" title="Quay lại">tại đây.</a></p>
-                            </div>
-                        </form>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -201,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
     </div>
 
-    <?php //include('footer.php')  ?>
+    <?php include('../shared/footer.php')  ?>
 
 
 </body>

@@ -1,5 +1,12 @@
 <?php
 require_once('../database.php');
+
+session_start();
+
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../page/login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +100,7 @@ require_once('../database.php');
                     <tr>
                         <td><?php echo $category['category_name']; ?></td>
                         <td><img src="<?php echo '../cate/' . $category['image_url']; ?>" alt="<?php echo $category['category_name']; ?>" class="category-image"></td>
-                        <td><a class="btn-primary" href="<?php echo 'update_category.php?id='.$category['category_id']; ?>">Edit</a></td>
+                        <td><a class="btn-primary" href="<?php echo 'update/category.php?id='.$category['category_id']; ?>">Edit</a></td>
                         <td><a class="btn-primary" href="<?php echo 'delete/category.php?id='.$category['category_id']; ?>">Delete</a></td>
                     </tr>
                     <?php endwhile; ?>

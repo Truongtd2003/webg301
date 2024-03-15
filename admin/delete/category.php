@@ -1,7 +1,11 @@
 <?php
 require_once('../../database.php');
 
-
+session_start();
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../../page/login.php');
+}
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     delete_category($_POST['id']);
@@ -55,7 +59,7 @@ else{
                         <!-- Hiển thị các thông tin khác về danh mục -->
                         <form action="<?php echo ($_SERVER["PHP_SELF"]) ?>" method="post">
                             <input type="hidden" name="id" value="<?php echo $category['category_id']; ?>">
-                            <input type="submit" name="submit" value="Delete" class="btn btn-danger">
+                            <input type="submit" name="submit"  class="btn btn-danger">
                         </form>
                         <br>
                         <a href="../category.php" class="btn btn-secondary">Cancel</a>

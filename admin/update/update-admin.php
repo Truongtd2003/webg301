@@ -1,19 +1,18 @@
 <?php 
 require_once('../../database.php');
-
+session_start();
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../../page/login.php');
+}
 
 $errors = [];
-
 function isFormValidated(){
     global $errors;
     return count($errors) == 0;
 }
-
 function checkForm(){
     global $errors;
-    
-
-
     $id = $_POST['admin_id'];
     $admin = find_admin_by_id($id);
     if (empty($_POST['username'])){
@@ -117,25 +116,30 @@ else{
 
         <div class="form-group">
             <label for="name">Name</label> 
-        <input type="text" class="form-control" id="username" name="username" value="<?php echo isFormValidated()? $admin['username']: $_POST['username'] ?>">
+        <input type="text" class="form-control" id="username" name="username" 
+        value="<?php echo isFormValidated()? $admin['username']: $_POST['username'] ?>">
         </div>
             <div class="form-group">
                 <label for="email">Email: </label>
-                <input type="text" class="form-control" id="email" name="email" value="<?php echo isFormValidated()? $admin['email']: $_POST['email'] ?>">
+                <input type="text" class="form-control" id="email" 
+                name="email" value="<?php echo isFormValidated()? $admin['email']: $_POST['email'] ?>">
             </div>
             <div class="form-group">
             <label for="hash_password">PassWord</label> <!--required-->
-        <input type="text" class="form-control" id="hash_password" name="hash_password" value="<?php echo isFormValidated()? '': $_POST['hash_password'] ?>">
+        <input type="text" class="form-control" id="hash_password" 
+        name="hash_password" value="<?php echo isFormValidated()? '': $_POST['hash_password'] ?>">
             </div>
 
             <div class="form-group">
             <label for="newpassword">New PassWord</label> <!--required-->
-        <input type="text" class="form-control" id="newpassword" name="newpassword" value="<?php echo isFormValidated()? '': $_POST['newpassword'] ?>">
+        <input type="text" class="form-control" id="newpassword" 
+        name="newpassword" value="<?php echo isFormValidated()? '': $_POST['newpassword'] ?>">
             </div>
 
             <div class="form-group">
             <label for="confirmpassword">Confirm PassWord</label> <!--required-->
-        <input type="text" class="form-control" id="confirmpassword" name="confirmpassword" value="<?php echo isFormValidated()? '': $_POST['confirmpassword'] ?>">
+        <input type="text" class="form-control" id="confirmpassword" 
+        name="confirmpassword" value="<?php echo isFormValidated()? '': $_POST['confirmpassword'] ?>">
             </div>
            
         

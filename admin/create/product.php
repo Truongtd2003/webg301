@@ -1,7 +1,11 @@
 <?php
 require_once('../../database.php');
 $category = find_all_category();
-
+session_start();
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../../page/login.php');
+}
 
 $errors = [];
 
@@ -89,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         <div class="form-group">
             <label for="price">Price</label>
-            <input type="text" class="form-control" id="price" name="price" value="<?php echo (isFormValidated() ? "" : $_POST['price']) ?>">
+            <input type="number" class="form-control" id="price" name="price" value="<?php echo (isFormValidated() ? "" : $_POST['price']) ?>">
         </div>
 
         <div class="form-group">

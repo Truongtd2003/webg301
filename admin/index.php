@@ -2,6 +2,11 @@
 require_once('../database.php');
 session_start();
 
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../page/login.php');
+}
+
 
 ?>
 

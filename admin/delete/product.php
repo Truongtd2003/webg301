@@ -1,7 +1,11 @@
 <?php
 require_once('../../database.php');
 
-
+session_start();
+if (!isset($_SESSION['admin'])) {
+    
+    redirect_to('../../page/login.php');
+}
 
 if($_SERVER["REQUEST_METHOD"] == 'POST'){
     delete_product($_POST['product_id']);

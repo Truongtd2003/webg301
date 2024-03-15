@@ -91,6 +91,7 @@ function find_all_admin()
 }
 
 
+
 function update_admin($admin)
 {
   global $db;
@@ -140,6 +141,17 @@ function find_admin_by_email($email){
   
 }
 
+function find_product_by_cateid($id) {
+  global $db;
+
+  $sql = "SELECT * FROM products WHERE category_id = '" .  $id . "'";
+  $result = mysqli_query($db, $sql);
+  return confirm_query_result($result);
+  
+  
+}
+
+
 function find_product_by_id($id) {
   global $db;
 
@@ -154,6 +166,29 @@ function find_all_products(){
   global $db;
 
   $sql = "SELECT * FROM products";
+  $result = mysqli_query($db, $sql);
+ 
+  return confirm_query_result($result);
+}
+function find_new_products(){
+  global $db;
+
+  $sql = "SELECT * FROM products ";
+  $sql .= " ORDER BY product_id DESC ";
+  $sql .= "LIMIT 7";
+
+  $result = mysqli_query($db, $sql);
+ 
+  return confirm_query_result($result);
+}
+
+function find_discount_products(){
+  global $db;
+
+  $sql = "SELECT * FROM products ";
+  $sql .= " ORDER BY product_id ";
+  $sql .= "LIMIT 7";
+
   $result = mysqli_query($db, $sql);
  
   return confirm_query_result($result);
@@ -247,6 +282,67 @@ function insert_category($category) {
   $result = mysqli_query($db, $sql);
 
  
+
+  return confirm_query_result($result);
+}
+
+
+
+function update_category($category) {
+  global $db;
+
+  $sql = "UPDATE category SET ";
+ 
+  $sql .= "category_name='" . $category['category_name'] . "', ";
+ 
+  $sql .= "image_url='" . $category['image_url'] . "' ";
+  
+  $sql .= "WHERE category_id='" . $category['category_id'] . "' ";
+  $sql .= "LIMIT 1";
+  
+  $result = mysqli_query($db, $sql);
+
+  return confirm_query_result($result);
+}
+
+
+function search($searchTerm ){
+  global $db;
+  global $db;
+
+    // Chuẩn bị biến $searchTerm để sử dụng trong truy vấn
+    $searchTerm = "%{$searchTerm}%";
+
+    $sql = "SELECT products.*, category.category_name
+            FROM products
+            INNER JOIN category ON products.category_id = category.category_id
+            WHERE 
+                category.category_name LIKE '{$searchTerm}' OR 
+                products.product_name LIKE '{$searchTerm}' OR 
+                products.origin LIKE '{$searchTerm}' OR
+                products.description LIKE '{$searchTerm}' OR 
+                products.material LIKE '{$searchTerm}'";
+
+    // Thực hiện truy vấn
+    $result = mysqli_query($db, $sql);
+    return confirm_query_result($result);
+
+}
+
+function insert_user($user) {
+  global $db;
+
+  $sql = "INSERT INTO users ";
+  $sql .= "(username, email, full_name, address, phone_number) ";
+  $sql .= "VALUES (";
+  $sql .= "'" . $user['username'] . "',";
+  $sql .= "'" . $user['email'] . "',";
+  $sql .= "'" . $user['full_name'] . "',";
+  $sql .= "'" . $user['address'] . "',";
+  $sql .= "'" . $user['phone_number'] . "'";
+  $sql .= ")";
+
+  $result = mysqli_query($db, $sql);
 
   return confirm_query_result($result);
 }
